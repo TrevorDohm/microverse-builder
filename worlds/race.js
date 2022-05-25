@@ -2,8 +2,6 @@
 // https://croquet.io
 // info@croquet.io
 
-// Night sky images provided by Nasa (https://svs.gsfc.nasa.gov/3442)
-
 export function init(Constants) {
     Constants.AvatarNames = [
         "newwhite", "madhatter", "marchhare", "queenofhearts", "cheshirecat", "alice"
@@ -11,12 +9,12 @@ export function init(Constants) {
 
     Constants.SystemBehaviorDirectory = "behaviors/croquet";
     Constants.SystemBehaviorModules = [
-        "menu.js", "elected.js", "propertySheet.js", "stickyNote.js", "avatar.js"
+        "menu.js", "elected.js", "propertySheet.js", "stickyNote.js", "rapier.js", "avatar.js"
     ];
 
-    Constants.UserBehaviorDirectory = "behaviors/default";
+    Constants.UserBehaviorDirectory = "behaviors/race";
     Constants.UserBehaviorModules = [
-        "lights.js"
+        "car.js", "lights.js"
     ];
 
     // const frameColor = 0x888888;
@@ -27,12 +25,14 @@ export function init(Constants) {
                 name:"world model",
                 layers: ["walk"],
                 type: "3d",
+                translation:[0, -1.7, 0],
                 singleSided: true,
                 shadow: true,
                 placeholder: true,
-                placeholderSize: [400, 1, 400],
+                placeholderSize: [400, 0.1, 400],
                 placeholderColor: 0x808080,
-                placeholderOffset: [0, -0.663, 0],
+                placeholderOffset: [0, 0, 0],
+
             }
         },
         {
@@ -41,8 +41,32 @@ export function init(Constants) {
                 layers: ["light"],
                 type: "lighting",
                 behaviorModules: ["Light"],
-                dataLocation: "./assets/sky/night_sky_16k.jpg",
+                dataLocation: "./assets/sky/night_sky_4k.jpg",
                 dataType: "jpg",
+            }
+        },
+        {
+            card: {
+                name:"racecarone",
+                dataRotation: [-Math.PI / 2, 0, 0],
+                translation: [10, -1.672, 15],
+                layers: ["pointer"],
+                type: "3d",
+                multiuser: true,
+                dataLocation: "3Rph2fVNkc0jhp42pQF7jVIX5t2yeugm3T6CFPV1F4c4OiYmIiFofX00Oz43IXwnIXwxID0jJzcmfDs9fSd9BB4aNghrYWMwFDEIFidjEzsGZSYcOxAmajgYYH07PXwxID0jJzcmfD87MSA9JDcgITd9EyUlJhYaBj8oOzFnOTocMCEwNjZ_OgZiATQGOgE_OD0BZgU9ZR4iAjoIOX02MyYzfTwzaio-MyE7NA07NT8KFQVrNWATYAA7GRllYWMFEBhiJQskIj8xfyM9ZmI",
+                behaviorModules: ["Drive"]
+            }
+        },
+        {
+            card: {
+                name:"racecartwo",
+                dataRotation: [-Math.PI / 2, 0, 0],
+                translation: [10, -1.672, 10],
+                layers: ["pointer"],
+                type: "3d",
+                multiuser: true,
+                dataLocation: "3Rph2fVNkc0jhp42pQF7jVIX5t2yeugm3T6CFPV1F4c4OiYmIiFofX00Oz43IXwnIXwxID0jJzcmfDs9fSd9BB4aNghrYWMwFDEIFidjEzsGZSYcOxAmajgYYH07PXwxID0jJzcmfD87MSA9JDcgITd9EyUlJhYaBj8oOzFnOTocMCEwNjZ_OgZiATQGOgE_OD0BZgU9ZR4iAjoIOX02MyYzfTwzaio-MyE7NA07NT8KFQVrNWATYAA7GRllYWMFEBhiJQskIj8xfyM9ZmI",
+                behaviorModules: ["Drive"]
             }
         },
     ];
