@@ -8,7 +8,8 @@ class DriveActor {
         }
         this.addEventListener("keyDown", "control");
         this.addEventListener("pointerDown", "ride");
-        this.subscribe("scope", "newAngle", "newAngle");
+        this.subscribe(this._cardData.myScope, "newAngle", "newAngle");
+        // this.subscribe(this._cardData.myScope, "control", "handleControl");
     }
     run() {
         if (!this.running) {return;}
@@ -28,8 +29,7 @@ class DriveActor {
         this.riding = true;
     }
     newAngle(angle) {
-        angle = angle / 20;
-        console.log(angle);
+        angle = angle / 30;
         this.angle = angle;
     }
     rotateBy(angles) {
