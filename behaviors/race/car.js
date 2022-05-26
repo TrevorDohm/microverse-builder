@@ -9,7 +9,7 @@ class DriveActor {
         this.addEventListener("keyDown", "control");
         this.addEventListener("pointerDown", "ride");
         this.subscribe(this._cardData.myScope, "newAngle", "newAngle");
-        this.publish(this._cardData.myScope, "reset");
+        // this.publish(this._cardData.myScope, "reset");
         // this.subscribe(this._cardData.myScope, "control", "handleControl");
     }
     run() {
@@ -40,7 +40,7 @@ class DriveActor {
         this.rotateTo(q);
     }
     forwardBy(dist) {
-        let v = Worldcore.v3_rotate([dist, 0, 0], this.rotation);
+        let v = Worldcore.v3_rotate([0, 0, dist], this.rotation);
         this.translateTo([
             this.translation[0] + v[0],
             this.translation[1] + v[1],
@@ -67,22 +67,21 @@ class DriveActor {
     }
 }
 
-class DrivePawn {
-    setup() {
+// class DrivePawn {
+//     setup() {
 
-        this.shape.traverse((model) => {
-            if (model.material) { model.material.color = new Worldcore.THREE.Color(0x00ff00) }
-        });
+//         this.shape.traverse((model) => {
+//             if (model.material) { model.material.color = new Worldcore.THREE.Color(0xff0000) }
+//         });
 
-    }
-}
+//     }
+// }
 
 export default {
     modules: [
         {
             name: "Drive",
-            actorBehaviors: [DriveActor],
-            pawnBehaviors: [DrivePawn]
+            actorBehaviors: [DriveActor]
         }
     ]
 }

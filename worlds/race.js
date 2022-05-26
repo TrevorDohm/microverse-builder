@@ -17,8 +17,6 @@ export function init(Constants) {
         "car.js", "lights.js", "controller.js"
     ];
 
-    // const frameColor = 0x888888;
-
     Constants.DefaultCards = [
         {
             card: {
@@ -63,22 +61,21 @@ export function init(Constants) {
             card: {
                 name:"racecartwo",
                 dataRotation: [-Math.PI / 2, -Math.PI / 2, 0],
-                translation: [10, -1.672, 15],
+                translation: [5, -1.672, -10],
                 layers: ["pointer"],
                 type: "3d",
                 multiuser: true,
                 dataLocation: "3Rph2fVNkc0jhp42pQF7jVIX5t2yeugm3T6CFPV1F4c4OiYmIiFofX00Oz43IXwnIXwxID0jJzcmfDs9fSd9BB4aNghrYWMwFDEIFidjEzsGZSYcOxAmajgYYH07PXwxID0jJzcmfD87MSA9JDcgITd9EyUlJhYaBj8oOzFnOTocMCEwNjZ_OgZiATQGOgE_OD0BZgU9ZR4iAjoIOX02MyYzfTwzaio-MyE7NA07NT8KFQVrNWATYAA7GRllYWMFEBhiJQskIj8xfyM9ZmI",
                 behaviorModules: ["Rapier", "Drive"],
                 myScope: "B",
-                color: 0xff4000
+                color: 0xff0000
             }
         },
         {
             card: {
                 name:"controllerone",
                 type: "3d",
-                translation: [10, 0.4, 5],
-                dataScale:[1, 1, 1],
+                translation: [-5, 0.4, -10],
                 behaviorModules: ["Controller"],
                 layers: ["pointer"],
                 shadow: true,
@@ -91,15 +88,13 @@ export function init(Constants) {
             card: {
                 name:"controllertwo",
                 type: "3d",
-                translation: [10, 0.4, 20],
-                dataScale:[1, 1, 1],
-                dataLocation: "./assets/3D/testcube_1m.glb.zip",
+                translation: [10, 0.4, -10],
                 behaviorModules: ["Controller"],
                 layers: ["pointer"],
                 shadow: true,
                 myScope: "B",
                 multiuser: false,
-                color: 0xffa500
+                color: 0xff0000
             }
         },
     ];

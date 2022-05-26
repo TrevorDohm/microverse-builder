@@ -45,8 +45,9 @@ class ControllerPawn {
             this.shape.remove(this.obj);
             this.shape.children = [];
         }
-        let geometry = new Worldcore.THREE.SphereGeometry(2, 32, 16);
-        let material = new Worldcore.THREE.MeshStandardMaterial({color: 0xffff00});
+        
+        let geometry = new Worldcore.THREE.SphereGeometry(0.5, 32, 16);
+        let material = new Worldcore.THREE.MeshStandardMaterial({color: this.actor._cardData.color});
         this.obj = new Worldcore.THREE.Mesh(geometry, material);
         this.shape.add(this.obj);
 
