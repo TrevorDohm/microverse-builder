@@ -9,6 +9,7 @@ class DriveActor {
         this.addEventListener("keyDown", "control");
         this.addEventListener("pointerDown", "ride");
         this.subscribe(this._cardData.myScope, "newAngle", "newAngle");
+        this.publish(this._cardData.myScope, "reset");
         // this.subscribe(this._cardData.myScope, "control", "handleControl");
     }
     run() {
@@ -18,8 +19,9 @@ class DriveActor {
         this.forwardBy(-this.speed);
         if (this.avatar) {
             let t = this._translation;
-            this.avatar.translateTo([t[0] + 5.0, t[1] + 3.0, t[2]]);
-            this.avatar.rotateTo(this._rotation);
+            this.avatar._translation = [t[0], t[1] + 1.6, t[2]];
+            this.avatar._rotation = this._rotation;
+            this.avatar.say("forceOnPosition");
         }
     }
     ride() {
@@ -53,6 +55,9 @@ class DriveActor {
             this.speed = Math.min(1, this.speed + 0.025);
         } else if (key.key === "ArrowDown") {
             this.speed = Math.max(-0.2, this.speed - 0.025);
+        } else if (key.key === "Shift") {
+            this.avatar = undefined;
+            this.riding = false;
         }
     }
     destroy() {
@@ -62,46 +67,13 @@ class DriveActor {
     }
 }
 
-class CircleActor {
+class DrivePawn {
     setup() {
-        if (!this.circling) {
-            this.circling = true;
-            this.step();
-        }
-        this.addEventListener("pointerDown", "toggle");
-    }
 
-    step() {
-        if (!this.circling) {return;}
-        this.future(20).step();
-        this.rotateBy([0, 0.01, 0]);
-        this.forwardBy(0.03);
-    }
+        this.shape.traverse((model) => {
+            if (model.material) { model.material.color = new Worldcore.THREE.Color(0x00ff00) }
+        });
 
-    toggle() {
-        this.circling = !this.circling;
-        if (this.circling) {
-            this.step();
-        }
-    }
-
-    rotateBy(angles) {
-        let q = Worldcore.q_euler(...angles);
-        q = Worldcore.q_multiply(this.rotation, q);
-        this.rotateTo(q);
-    }
-
-    forwardBy(dist) {
-        let v = Worldcore.v3_rotate([0, 0, dist], this.rotation)
-        this.translateTo([
-            this.translation[0] + v[0],
-            this.translation[1] + v[1],
-            this.translation[2] + v[2]]);
-    }
-
-    destroy() {
-        this.removeEventListener("pointerDown", "toggle");
-        this.circling = false;
     }
 }
 
@@ -109,11 +81,8 @@ export default {
     modules: [
         {
             name: "Drive",
-            actorBehaviors: [DriveActor]
-        },
-        {
-            name: "Circle",
-            actorBehaviors: [CircleActor],
+            actorBehaviors: [DriveActor],
+            pawnBehaviors: [DrivePawn]
         }
     ]
 }

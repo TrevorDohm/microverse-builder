@@ -1,9 +1,8 @@
-// Spin
+// Controller
 // Copyright 2022 Croquet Corporation
 // Croquet Microverse
-// Adds a simple spin around y to a Tron
 
-class SpinActor {
+class ControllerActor {
     setup() {
         this.listen("startSpinning", "startSpinning");
         this.listen("stopSpinning", "stopSpinning");
@@ -39,8 +38,18 @@ class SpinActor {
     }
 }
 
-class SpinPawn {
+class ControllerPawn {
     setup() {
+
+        if (this.obj) {
+            this.shape.remove(this.obj);
+            this.shape.children = [];
+        }
+        let geometry = new Worldcore.THREE.SphereGeometry(2, 32, 16);
+        let material = new Worldcore.THREE.MeshStandardMaterial({color: 0xffff00});
+        this.obj = new Worldcore.THREE.Mesh(geometry, material);
+        this.shape.add(this.obj);
+
         this.addEventListener("pointerDown", "onPointerDown");
         this.addEventListener("pointerUp", "onPointerUp");
         this.addEventListener("pointerMove", "onPointerMove");
@@ -100,9 +109,9 @@ class SpinPawn {
 export default {
     modules: [
         {
-            name: "Spin",
-            actorBehaviors: [SpinActor],
-            pawnBehaviors: [SpinPawn]
+            name: "Controller",
+            actorBehaviors: [ControllerActor],
+            pawnBehaviors: [ControllerPawn]
         }
     ]
 }
