@@ -14,8 +14,10 @@ export function init(Constants) {
 
     Constants.UserBehaviorDirectory = "behaviors/race";
     Constants.UserBehaviorModules = [
-        "car.js", "lights.js", "controller.js"
+        "car.js", "lights.js", "controller.js", "cascade.js"
     ];
+
+    Constants.UseRapier = true;
 
     Constants.DefaultCards = [
         {
@@ -26,10 +28,15 @@ export function init(Constants) {
                 translation:[0, -1.7, 0],
                 singleSided: true,
                 shadow: true,
-                placeholder: true,
+            /*    placeholder: true,
                 placeholderSize: [400, 0.1, 400],
                 placeholderColor: 0x808080,
-                placeholderOffset: [0, 0, 0],
+                placeholderOffset: [0, 0, 0],*/
+                behaviorModules: ["Rapier", "Cascade"],
+                rapierSize: [400, 0.1, 400],
+                rapierShape: "cuboid",
+                rapierType: "static",
+                color: 0x808080,
 
             }
         },
@@ -43,7 +50,7 @@ export function init(Constants) {
                 dataType: "jpg",
             }
         },
-        {
+/*        {
             card: {
                 name:"racecarone",
                 dataRotation: [-Math.PI / 2, -Math.PI / 2, 0],
@@ -52,7 +59,7 @@ export function init(Constants) {
                 type: "3d",
                 multiuser: true,
                 dataLocation: "3Rph2fVNkc0jhp42pQF7jVIX5t2yeugm3T6CFPV1F4c4OiYmIiFofX00Oz43IXwnIXwxID0jJzcmfDs9fSd9BB4aNghrYWMwFDEIFidjEzsGZSYcOxAmajgYYH07PXwxID0jJzcmfD87MSA9JDcgITd9EyUlJhYaBj8oOzFnOTocMCEwNjZ_OgZiATQGOgE_OD0BZgU9ZR4iAjoIOX02MyYzfTwzaio-MyE7NA07NT8KFQVrNWATYAA7GRllYWMFEBhiJQskIj8xfyM9ZmI",
-                behaviorModules: ["Rapier", "Drive"], 
+                behaviorModules: ["Rapier", "Drive", "Cascade"], 
                 myScope: "A",
                 color: 0x0000ff
             }
@@ -66,11 +73,11 @@ export function init(Constants) {
                 type: "3d",
                 multiuser: true,
                 dataLocation: "3Rph2fVNkc0jhp42pQF7jVIX5t2yeugm3T6CFPV1F4c4OiYmIiFofX00Oz43IXwnIXwxID0jJzcmfDs9fSd9BB4aNghrYWMwFDEIFidjEzsGZSYcOxAmajgYYH07PXwxID0jJzcmfD87MSA9JDcgITd9EyUlJhYaBj8oOzFnOTocMCEwNjZ_OgZiATQGOgE_OD0BZgU9ZR4iAjoIOX02MyYzfTwzaio-MyE7NA07NT8KFQVrNWATYAA7GRllYWMFEBhiJQskIj8xfyM9ZmI",
-                behaviorModules: ["Rapier", "Drive"],
+                behaviorModules: ["Rapier", "Drive", "Cascade"],
                 myScope: "B",
                 color: 0xff0000
             }
-        },
+        },*/
         {
             card: {
                 name:"controllerone",
@@ -95,6 +102,66 @@ export function init(Constants) {
                 myScope: "B",
                 multiuser: false,
                 color: 0xff0000
+            }
+        },
+        {
+            card: {
+                name:"block1",
+                type: "3d",
+                translation: [10, 10, -15],
+                behaviorModules: ["Rapier", "Cascade"],
+                layers: ["walk"],
+                rapierSize: [2, 2, 2],
+                rapierShape: "cuboid",
+                rapierType: "dynamic",
+                color: 0x000077,
+
+
+            }
+        },
+        {
+            card: {
+                name:"block2",
+                type: "3d",
+                translation: [10, -0.7, -15],
+                behaviorModules: ["Rapier", "Cascade"],
+                layers: ["walk"],
+                rapierSize: [2, 2, 2],
+                rapierShape: "cuboid",
+                rapierType: "static",
+                color: 0x007700,
+
+
+            }
+        },
+        {
+            card: {
+                name:"block3",
+                type: "3d",
+                translation: [5, 0, -15],
+                behaviorModules: ["Rapier", "Cascade", "Drive"],
+                layers: ["walk", "pointer"],
+                rapierSize: [2, 1, 2],
+                rapierShape: "cuboid",
+                rapierType: "dynamic",
+                color: 0x770000,
+
+
+            }
+        },
+        {
+            card: {
+                name:"block4",
+                type: "3d",
+                translation: [5, 2, -20],
+                behaviorModules: ["Rapier", "Cascade"],
+                layers: ["walk"],
+                rapierSize: [2, 2, 2],
+                rapierShape: "cuboid",
+                rapierType: "dynamic",
+                color: 0x000077,
+
+
             }
         },
     ];
