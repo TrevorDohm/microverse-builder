@@ -16,8 +16,8 @@ class DriveActor {
         this.addEventListener("keyUp", "endControl");
         this.addEventListener("pointerDown", "ride");
         this.subscribe(this._cardData.myScope, "newAngle", "newAngle");
+        this.subscribe(this._cardData.myScope, "newSpeed", "newSpeed");
         // this.publish(this._cardData.myScope, "reset");
-        // this.subscribe(this._cardData.myScope, "control", "handleControl");
     }
 
     run() {
@@ -48,8 +48,13 @@ class DriveActor {
     }
 
     newAngle(angle) {
-        angle = angle / 30;
+        angle = angle / 20;
         this.angle = angle;
+    }
+
+    newSpeed(speed) {
+        speed = speed / 5;
+        this.speed = speed;
     }
 
     rotateBy(angles) {
@@ -96,16 +101,6 @@ class DriveActor {
     }
     
 }
-
-// class DrivePawn {
-//     setup() {
-
-//         this.shape.traverse((model) => {
-//             if (model.material) { model.material.color = new Worldcore.THREE.Color(0xff0000) }
-//         });
-
-//     }
-// }
 
 export default {
     modules: [
