@@ -1,4 +1,9 @@
+// Car (Driver)
+// Copyright 2022 Croquet Corporation
+// Croquet Microverse
+
 class DriveActor {
+
     setup() {
         if (this.speed === undefined) this.speed = 0.0;
         if (this.angle === undefined) this.angle = 0.0;
@@ -14,6 +19,7 @@ class DriveActor {
         // this.publish(this._cardData.myScope, "reset");
         // this.subscribe(this._cardData.myScope, "control", "handleControl");
     }
+
     run() {
         if (!this.running) {return;}
         this.future(20).run();
@@ -33,21 +39,25 @@ class DriveActor {
             this.avatar.say("forceOnPosition");
         }
     }
+
     ride() {
         let actors = this.queryCards();
         let avatar = actors.find(o => o.layers.includes("avatar"));
         this.avatar = avatar;
         this.riding = true;
     }
+
     newAngle(angle) {
         angle = angle / 30;
         this.angle = angle;
     }
+
     rotateBy(angles) {
         let q = Worldcore.q_euler(...angles);
         q = Worldcore.q_multiply(this.rotation, q);
         this.rotateTo(q);
     }
+
     forwardBy(dist) {
         let v = Worldcore.v3_rotate([0, 0, dist], this.rotation);
         this.translateTo([
@@ -55,6 +65,7 @@ class DriveActor {
             this.translation[1] + v[1],
             this.translation[2] + v[2]]);
     }
+
     control(key) {
         if (key.key === "ArrowRight") {
             this.angle = Math.min(0.05, this.angle + 0.004);
@@ -69,6 +80,7 @@ class DriveActor {
             this.riding = false;
         }
     }
+
     endControl(key){
         if (key.key === "ArrowUp") {
             this.accel = 0.0;
@@ -76,11 +88,13 @@ class DriveActor {
             this.accel = 0.0;
         }
     }
+
     destroy() {
         this.removeEventListener("pointerDown", "toggle");
         this.removeEventListener("keyDown", "turn", "keyUp");
         this.running = false;
     }
+    
 }
 
 // class DrivePawn {

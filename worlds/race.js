@@ -46,12 +46,12 @@ export function init(Constants) {
         {
             card: {
                 name:"racecarone",
-                dataRotation: [-Math.PI / 2, -Math.PI / 2, 0],
+                dataRotation: [0, -Math.PI / 2, 0],
                 translation: [0, -1.672, -10],
                 layers: ["pointer"],
                 type: "3d",
                 multiuser: true,
-                dataLocation: "3Rph2fVNkc0jhp42pQF7jVIX5t2yeugm3T6CFPV1F4c4OiYmIiFofX00Oz43IXwnIXwxID0jJzcmfDs9fSd9BB4aNghrYWMwFDEIFidjEzsGZSYcOxAmajgYYH07PXwxID0jJzcmfD87MSA9JDcgITd9EyUlJhYaBj8oOzFnOTocMCEwNjZ_OgZiATQGOgE_OD0BZgU9ZR4iAjoIOX02MyYzfTwzaio-MyE7NA07NT8KFQVrNWATYAA7GRllYWMFEBhiJQskIj8xfyM9ZmI",
+                dataLocation: "./assets/3D/porscheBlue.zip",
                 behaviorModules: ["Rapier", "Drive"], 
                 myScope: "A",
                 color: 0x0000ff
@@ -60,12 +60,12 @@ export function init(Constants) {
         {
             card: {
                 name:"racecartwo",
-                dataRotation: [-Math.PI / 2, -Math.PI / 2, 0],
+                dataRotation: [0, -Math.PI / 2, 0],
                 translation: [5, -1.672, -10],
                 layers: ["pointer"],
                 type: "3d",
                 multiuser: true,
-                dataLocation: "3Rph2fVNkc0jhp42pQF7jVIX5t2yeugm3T6CFPV1F4c4OiYmIiFofX00Oz43IXwnIXwxID0jJzcmfDs9fSd9BB4aNghrYWMwFDEIFidjEzsGZSYcOxAmajgYYH07PXwxID0jJzcmfD87MSA9JDcgITd9EyUlJhYaBj8oOzFnOTocMCEwNjZ_OgZiATQGOgE_OD0BZgU9ZR4iAjoIOX02MyYzfTwzaio-MyE7NA07NT8KFQVrNWATYAA7GRllYWMFEBhiJQskIj8xfyM9ZmI",
+                dataLocation: "./assets/3D/porscheRed.zip",
                 behaviorModules: ["Rapier", "Drive"],
                 myScope: "B",
                 color: 0xff0000

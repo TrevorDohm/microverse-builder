@@ -3,6 +3,7 @@
 // Croquet Microverse
 
 class ControllerActor {
+
     setup() {
         this.listen("startSpinning", "startSpinning");
         this.listen("stopSpinning", "stopSpinning");
@@ -36,21 +37,19 @@ class ControllerActor {
         this.unsubscribe(this.id, "stopSpinning");
         this.unsubscribe(this.id, "newAngle");
     }
+
 }
 
 class ControllerPawn {
     setup() {
-
         if (this.obj) {
             this.shape.remove(this.obj);
             this.shape.children = [];
         }
-        
         let geometry = new Worldcore.THREE.SphereGeometry(0.5, 32, 16);
         let material = new Worldcore.THREE.MeshStandardMaterial({color: this.actor._cardData.color});
         this.obj = new Worldcore.THREE.Mesh(geometry, material);
         this.shape.add(this.obj);
-
         this.addEventListener("pointerDown", "onPointerDown");
         this.addEventListener("pointerUp", "onPointerUp");
         this.addEventListener("pointerMove", "onPointerMove");
