@@ -25,6 +25,7 @@ class CascadeActor {
         let rapierShape = this._cardData.rapierShape;
         let rapierSensor = this._cardData.rapierSensor;
         let rapierForce = this._cardData.rapierForce;
+        let rapierRotation = this._cardData.rapierRotation;
         if (rapierType === "positionBased") {
             kinematic = Worldcore.RAPIER.RigidBodyDesc.newKinematicPositionBased();
         } else if (rapierType === "static") {
@@ -96,6 +97,10 @@ class CascadeActor {
 
         if (rapierForce) {
             this.rigidBody.applyForce(rapierForce);
+        }
+
+        if (rapierRotation){
+            this.rigidBody.restrictRotations(rapierRotation[0], rapierRotation[1], rapierRotation[2]); // should restrict rotation on y axis, so the car doesn't flip over
         }
 
         /*
@@ -174,6 +179,20 @@ class CascadeActor {
             r.applyForce({x: inputVector[0], y: inputVector[1], z: inputVector[2]}, true);
         }
 
+    }
+
+    setTorque(inputVector){
+        let r = this.rigidBody;
+        if(r){
+            r.applyTorque({x: inputVector[0], y: inputVector[1], z: inputVector[2]}, true);
+        }
+    }
+
+    getRotation(){
+        let r = this.rigidBody.rotation();
+    //    console.log("xcos: " + Math.cos(r.x) + ", xsin: " + Math.sin(r.x) + ", ycos: " + Math.cos(r.y) + ", ysin: " + Math.sin(r.y) + ", zcos: " + Math.cos(r.z) + ", zsin: " + Math.sin(r.z));
+        console.log("x: " + r.x + ", y: " + r.y + ", z: " + r.z + ", w: " + r.w);
+        return r;
     }
 
     setVelocity(inputVector){

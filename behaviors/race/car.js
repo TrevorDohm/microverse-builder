@@ -9,6 +9,8 @@ class DriveActor {
         if (this.angle === undefined) this.angle = 0.0;
         if (this.accel === undefined) this.accel = 0.0;
         if (this.accelerating === undefined) this.accelerating = false;
+        if (this.turning === undefined) this.turning = false;
+        if (this.rotAccel === undefined) this.rotAccel = 0.0;
 
         if (this.running === undefined) {
             this.running = true;
@@ -26,10 +28,14 @@ class DriveActor {
         if (!this.running) {return;}
         this.future(20).run();
 
-        if(this.accelerating === true) {
-            let r = this.rotation;
-        //    this.call("Cascade$CascadeActor", "setForce", [100 * r[0], 0, 100 * r[2]]);
-            this.call("Cascade$CascadeActor", "setForce", [0, 0, -80]);
+        if(this.accelerating) {
+            let rot = this.call("Cascade$CascadeActor", "getRotation");
+            this.call("Cascade$CascadeActor", "setForce", [-this.accel * rot.y, 0, -this.accel * rot.w]); // TODO: no more hard code
+        }
+
+        if(this.turning){
+            this.call("Cascade$CascadeActor", "setTorque", [0, 0, this.rotAccel]);
+        //    this.call("Cascade$CascadeActor", "getRotation");
         }
 
 /*        this.speed = this.speed + this.accel; // Add current acceleration to speed
@@ -82,15 +88,19 @@ class DriveActor {
 
     control(key) {
         if (key.key === "ArrowRight") {
-            this.angle = Math.min(0.05, this.angle + 0.006);
+            this.turning = true;
+            this.rotAccel = -15;
+        //    this.call("Cascade$CascadeActor", "setTorque", [0, 0, -80]);
         } else if (key.key === "ArrowLeft") {
-            this.angle = Math.max(-0.05, this.angle - 0.006);
+            this.turning = true;
+            this.rotAccel = 15;
+        //    this.call("Cascade$CascadeActor", "setTorque", [0, 0, 80]);
         } else if (key.key === "ArrowUp") { // up/down arrow keys accelerate the car while held
-        //    this.accel = 0.01;
-        //    this.call("Cascade$CascadeActor", "setVelocity");
+            this.accel = 80;
             this.accelerating = true;
         } else if (key.key === "ArrowDown") {
-        //    this.accel = -0.01;
+            this.accel = -40;
+            this.accelerating = true;
         } else if (key.key === "Shift") {
             this.avatar = undefined;
             this.riding = false;
@@ -99,15 +109,13 @@ class DriveActor {
 
     endControl(key){
         if(key.key === "ArrowRight" || key.key === "ArrowLeft"){
-            this.angle = 0;
-            console.log("x: " + this.rotation[0] * 10000000 + ", z: " + this.rotation[2] * 10000000);
+            this.rotAccel = 0;
+            this.turning = false;
         }
-        else if (key.key === "ArrowUp") {
-        //    this.accel = 0.0;
+        else if (key.key === "ArrowUp" || key.key === "ArrowDown") {
+            this.accel = 0.0;
             this.accelerating = false;
-        } else if (key.key === "ArrowDown") {
-        //    this.accel = 0.0;
-        }
+        } 
     }
 
     destroy() {
