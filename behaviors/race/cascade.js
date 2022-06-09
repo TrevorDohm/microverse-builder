@@ -190,21 +190,17 @@ class CascadeActor {
 
     getRotation(){
         let r = this.rigidBody.rotation();
-    //    console.log("xcos: " + Math.cos(r.x) + ", xsin: " + Math.sin(r.x) + ", ycos: " + Math.cos(r.y) + ", ysin: " + Math.sin(r.y) + ", zcos: " + Math.cos(r.z) + ", zsin: " + Math.sin(r.z));
-        console.log("x: " + r.x + ", y: " + r.y + ", z: " + r.z + ", w: " + r.w);
+    //    console.log("x: " + r.x + ", y: " + r.y + ", z: " + r.z + ", w: " + r.w);
         return r;
     }
 
-    setVelocity(inputVector){
+    setAngDamp(input){
         let r = this.rigidBody;
         if(r){
-            r.setLinvel({x: inputVector[0], y: inputVector[1], z: inputVector[2]});
+            r.setAngularDamping(input);
         }
     }
 
-    getVelocity(){
-        return this.rigidBody.linvel();
-    }
 }
 
 class CascadePawn {

@@ -141,13 +141,13 @@ export function init(Constants) {
             card: {
                 name:"block3", //drivable
                 type: "3d",
-                translation: [5, 2, -15],
+                translation: [5, 2, -5],
                 behaviorModules: ["Rapier", "Cascade", "Drive"],
                 layers: ["walk", "pointer"],
                 rapierSize: [2, 1, 2],
                 rapierShape: "cuboid",
                 rapierType: "dynamic",
-                rapierRotation: ["true", "true", "true"], //TODO
+                rapierRotation: ["false", "false", "true", "true"], //TODO
                 color: 0x770000,
 
 
@@ -158,6 +158,51 @@ export function init(Constants) {
                 name:"block4",
                 type: "3d",
                 translation: [5, 2, -20],
+                behaviorModules: ["Rapier", "Cascade"],
+                layers: ["walk"],
+                rapierSize: [2, 2, 2],
+                rapierShape: "cuboid",
+                rapierType: "dynamic",
+                color: 0x000077,
+
+
+            }
+        },
+        {
+            card: {
+                name:"block5",
+                type: "3d",
+                translation: [5, 2, 20],
+                behaviorModules: ["Rapier", "Cascade"],
+                layers: ["walk"],
+                rapierSize: [2, 2, 2],
+                rapierShape: "cuboid",
+                rapierType: "dynamic",
+                color: 0x880077,
+
+
+            }
+        },
+        {
+            card: {
+                name:"block6",
+                type: "3d",
+                translation: [25, 2, -5],
+                behaviorModules: ["Rapier", "Cascade"],
+                layers: ["walk"],
+                rapierSize: [2, 2, 2],
+                rapierShape: "cuboid",
+                rapierType: "dynamic",
+                color: 0x880077,
+
+
+            }
+        },
+        {
+            card: {
+                name:"block7",
+                type: "3d",
+                translation: [-15, 2, -5],
                 behaviorModules: ["Rapier", "Cascade"],
                 layers: ["walk"],
                 rapierSize: [2, 2, 2],
