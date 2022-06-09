@@ -1,4 +1,4 @@
-// tutorial2.js
+// Default world: gallery
 // Copyright 2022 by Croquet Corporation, Inc. All Rights Reserved.
 // https://croquet.io
 // info@croquet.io
@@ -10,17 +10,27 @@ export function init(Constants) {
 
     Constants.SystemBehaviorDirectory = "behaviors/croquet";
     Constants.SystemBehaviorModules = [
-        "menu.js", "elected.js", "propertySheet.js", "stickyNote.js", "avatarEvents.js", "pdfview.js"
+        "menu.js", "elected.js", "propertySheet.js", "stickyNote.js", "rapier.js", "avatarEvents.js", "pdfview.js"
     ];
 
     Constants.UserBehaviorDirectory = "behaviors/default";
     Constants.UserBehaviorModules = [
-        "demo.js", "lights.js", "bouncingBall.js", "bitcoinTracker.js", "spin.js", "openPortal.js"
+        "demo.js", "lights.js", "bouncingBall.js", "bitcoinTracker.js", "spin.js", "pendulum.js", "openPortal.js"
     ];
 
     const frameColor = 0x888888;
+    Constants.UseRapier = true;
 
     Constants.DefaultCards = [
+        {
+            card: {
+                name: "entrance",
+                // same position and orientation as in openPortal.js
+                translation: [-12, -0.4, -10.2],
+                rotation: [0, -Math.PI / 2, 0],
+                spawn: "default",
+            }
+        },
         {
             card: {
                 name:"world model",
@@ -51,8 +61,8 @@ export function init(Constants) {
         {
             card: {
                 name: "image card",
-                translation: [0, 0.4, -10],
-                //rotation: [0, Math.PI / 2, 0],
+                translation: [12, 0.6, -10],
+                rotation: [0, -Math.PI / 2, 0],
                 scale: [4, 4, 4],
                 type: "2d",
                 textureType: "image",
@@ -69,7 +79,7 @@ export function init(Constants) {
         {
             card: {
                 translation: [-12, -0.4, -10.2],
-                rotation: [0, Math.PI / 2, 0],
+                rotation: [0, -Math.PI / 2, 0],
                 layers: ["pointer", "portal"],
                 className: "PortalActor",
                 color: 16737996,
@@ -85,8 +95,8 @@ export function init(Constants) {
         {
             card: {
                 name:"bouncinglogo",
-                translation: [-4.5, 0.4, -10],
-                rotation: [0, Math.PI, 0],
+                translation: [12, 0.6, 11],
+                rotation: [0, -Math.PI / 2, 0],
                 behaviorModules: ["BouncingBall"],
                 scale: [3, 3, 3],
                 width: 1,
@@ -106,7 +116,7 @@ export function init(Constants) {
         {
             card: {
                 name: "bitcointracker",
-                translation: [5, 0.5, -10],
+                translation: [-5, 0.6, -16.87],
                 rotation: [0, 0, 0],
                 scale: [3, 3, 3],
                 type: "2d",
@@ -154,8 +164,8 @@ export function init(Constants) {
             card: {
                 name: "text editor",
                 className: "TextFieldActor",
-                translation: [11.914606500892997, 0.4, -10],
-                rotation: [0, -Math.PI / 2, 0],
+                translation: [5.5, 0.4, -16.87],
+                rotation: [0, 0, 0],
                 depth: 0.05,
                 type: "text",
                 runs: [{text: "\nWelcome to the Croquet Gallery!\n"}],
@@ -189,7 +199,7 @@ export function init(Constants) {
                 type: "text",
                 runs: [{text: `
 translation: [-12, -0.4, -10.2],
-rotation: [0, 1.5707963267948966, 0],
+rotation: [0, -1.5707963267948966, 0],
 layers: ["pointer", "portal"],
 className: "PortalActor",
 color: 16737996,
@@ -252,5 +262,17 @@ width: 1.8,
             }
         }
         */
+        {
+            card: {
+                name:"pendulum",
+                type: "object",
+                translation: [-0.03701975732147922, 3.2368919013826734, 8.444841625884546],
+                behaviorModules: ["Rapier", "Pendulum"],
+                layers: ["pointer"],
+                scale: [0.2, 0.2, 0.2],
+                color: 0xaa6666,
+            }
+        },
+        
     ];
 }
