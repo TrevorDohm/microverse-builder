@@ -8,25 +8,44 @@ class LightPawn {
 
         this.removeLights();
 
-        let ambient = new Worldcore.THREE.AmbientLight( 0xffffff, .5 );
-        group.add(ambient);
-        this.lights.push(ambient);
-
-        // let dir = new Worldcore.THREE.Vector3(-2, -0.15, -0);
-        let directional = new Worldcore.THREE.DirectionalLight( 0xffffff, .5);
-        directional.position.set(-10, 200, 10);
-        this.lights.push(directional);
-        group.add(directional);
+        //let ambient = new Worldcore.THREE.AmbientLight( 0xffffff, .0 );
+        // group.add(ambient);
+        //this.lights.push(ambient);
 
         this.constructBackground(this.actor._cardData);
+
+        this.constructDirectionalLights();
 
         // let moduleName = this._behavior.module.externalName;
         this.listen("updateShape", "updateShape");
     }
 
+    constructDirectionalLights() {
+        let group = this.shape;
+
+        let points = [
+            [28.74, 9.7, 12.3],
+            [1.8, 9.7, 14],
+            [25.25, 9.7, -32.02],
+        ];
+        points.forEach((p) => {
+            let point = new Worldcore.THREE.PointLight(0xffffff, 0.5);
+            point.position.set(...p);
+            this.lights.push(point);
+            group.add(point);
+        });
+
+        let directional = new Worldcore.THREE.DirectionalLight(0xffffff, 0.8);
+        directional.position.set(2, 20, 30);
+        directional.castShadow = true;
+        this.lights.push(directional);
+        group.add(directional);
+    }
+
     removeLights() {
         if (this.lights) {
             this.lights.forEach((light) => {
+                light.dispose();
                 this.shape.remove(light);
             });
         }

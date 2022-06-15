@@ -14,7 +14,7 @@ export function init(Constants) {
 
     Constants.UserBehaviorDirectory = "behaviors/factory";
     Constants.UserBehaviorModules = [
-        "lights.js", "crane.js", "garage.js", "forklift.js", "circle.js",
+        "lights.js", "crane.js", "garage.js", "forklift.js", "circle.js", "cascade.js", "earth.js"
     ];
 
     Constants.UseRapier = true;
@@ -25,7 +25,7 @@ export function init(Constants) {
                 name:"world model",
                 layers: ["walk"],
                 translation: [-0, -5.234552517024578, -0],
-                dataLocation: "39Lv5cJwpT6XmTkLLdtqrctMAKNK9iin6K9MB0vfYUoYUU1NSUoDFhZfUFVcShdMShdaS1ZITFxNF1BWFkwWfl1vW0BVcEp4Umhae2FdCn5BWE9ATmxybmBgCxZQVhdaS1ZITFxNF1RQWktWT1xLSlwWbg94VAx3TU9eVWNOaUoAW0haSQhSX3hbU2MBDglvXnJBU1hOW1cMf2xbARZdWE1YFmYMYA9uc0phbWkNCFF_cnsJfnVteAxzb1Fxd3gMD3ddVn9jSXx3aHRSXXg",
+                dataLocation: "3LYn_S_GRNEPUqRtUPgMC4hhd_IwyziHCagqt7jO-gRoJDg4PD92Y2MqJSApP2I5P2IvPiM9OSk4YiUjYzljCygaLjUgBT8NJx0vDhQofws0LTo1OxkHGxUVfmMlI2IvPiM9OSk4YiElLz4jOik-PyljInoJPiQVLyk1HDwNdX19Gy8qOih_AxotBgkhJ3s_Ij0mFiE6GRMaDTs_L2MoLTgtYw41CCd5BRl0LhwEI34ENS0WNgI1eX4cCz17eQoLFBQqOnQDGwEuPiMmexU",
                 dataScale: [1.2, 1.2, 1.2],
                 fileName: "/Factory.glb",
                 modelType: "glb",
@@ -33,7 +33,7 @@ export function init(Constants) {
                 singleSided: true,
                 type: "3d",
                 placeholder: true,
-                placeholderSize: [400, 0.1, 400],
+                placeholderSize: [400, 14, 400],
                 placeholderColor: 0x808080,
                 placeholderOffset: [0, 0, 0],
             }
@@ -133,9 +133,25 @@ export function init(Constants) {
         },
         {
             card: {
+                name: "forklift 2",
+                dataTranslation: [0, -0.2, 0],
+                translation: [-6.864045029864473, 0, -6.132494653566097],
+                dataScale: [1.2, 1.2, 1.2],
+                behaviorModules: ["ForkLift"],
+                layers: ["pointer"],
+                dataLocation: "3UkowQroW_SGvJ0N4hXnZO_pwIEEVlVQNTvj8CJ0CG78PSEhJSZvenozPDkwJnsgJns2JzokIDAhezw6eiB6EjEDNyw5HCYUPgQ2Fw0xZhItNCMsIgAeAgwMZ3o8Ons2JzokIDAhezg8Nic6IzAnJjB6YBAAGSIZES8PHCcNBAVhIhlkbScSITQYHhliDR8SNy0DFz8gFAo7PAcTPnoxNCE0enhkF3gzEjxsDQYaIhwTYDsfGjkHMz84OCMTCjcjPzIfF3gkNzYgEyUtGzI",
+                pathIndex: 1,
+                modelType: "glb",
+                shadow: true,
+                singleSided: true,
+                type: "3d",
+            }
+        },
+        {
+            card: {
                 name: "drone 1",
                 layers: ["pointer"],
-                translation: [28.30055025496248, 1.9416405302346669, 18.673839690273365],
+                translation: [28.30055025496248, 4.7, 18.673839690273365],
                 dataLocation: "3FwXqoY7FkhqcGJaH7ejknByVX61fB61Kt8WfixVvCLMLjIyNjV8aWkgLyojNWgzNWglNCk3MyMyaC8paTNpASIQJD8qDzUHLRclBB4idQE-JzA_MRMNER8fdGkvKWglNCk3MyMyaCsvJTQpMCM0NSNpEmsnNiR2JDwVFQ4ZBBweLXMHHBULciU-HxUgNQl-LRcpGQ0KKQwZJxV_F2kiJzInaTI-DBQsIS8xAyUtJDIeHAQ3HnAZBxZ0LAcgMAwXECgxGTYwEQtxFjcWBA8",
                 dataScale: [1.2, 1.2, 1.2],
                 behaviorModules: ["Circle"],
@@ -161,6 +177,69 @@ export function init(Constants) {
                 depth: 0.05,
                 fullBright: true,
                 frameColor: 0x888888,
+            }
+        },
+        {
+            card: {
+                name:"base",
+                type: "object",
+                layers: ["pointer"],
+                translation: [13.096899862946268, 1.971934214047139, 17.421859492871423],
+                rotation: [0.47123889803846897, Math.PI / 2, 0],
+                behaviorModules: ["Rapier", "Cascade"],
+                rapierSize: [5, 0.3, 5],
+                color: 0x997777,
+                rapierShape: "cuboid",
+                rapierType: "positionBased",
+                shadow: true,
+            }
+        },
+        {
+            card: {
+                name:"base 2",
+                type: "object",
+                layers: ["pointer"],
+                translation:  [16.762074207944522, 0.10577659184032862, 17.421859492871423],
+                rotation: [0.35123889803846897, Math.PI / 2, 0],
+                behaviorModules: ["Rapier", "Cascade"],
+                rapierSize: [5, 0.3, 2],
+                color: 0x997777,
+                rapierShape: "cuboid",
+                rapierType: "positionBased",
+                shadow: true,
+            }
+        },
+
+        {
+            card: {
+                name:"spray",
+                type: "object",
+                layers: ["pointer"],
+                translation: [11.342398091737556, 4.306399511061578, 17.421859492871423],
+                behaviorModules: ["Spray"],
+                rapierSize: [0.2, 0.2, 0.2],
+                rapierShape: "cuboid",
+                rapierType: "positionBased",
+                color: 0xcccccc,
+                shadow: true,
+            }
+        },
+        {
+            card: {
+                translation: [51.91000213623047, 5.175040227971613, -28.295106048051267],
+                scale: [3.3, 3.3, 3.3],
+                rotation: [0, -Math.PI / 2, 0],
+                layers: ["pointer"],
+                behaviorModules: ["PDFView"],
+                color: 8947848,
+                depth: 0.05,
+                frameColor: 16777215,
+                fullBright: true,
+                modelType: "pdf",
+                pdfLocation: "3i2bjIBqONmUqz8XGj0oguUVu-wJleyHEiMp8RBLCX2sAR0dGRpTRkYPAAUMGkccGkcKGwYYHAwdRwAGRhxGLg0_CxAFIBooAjgKKzENWi4RCB8QHjwiPjAwW0YABkcKGwYYHAwdRwQAChsGHwwbGgxGWjFcGQxRBQY8IA4-UBkaLwMTHBsEIA1cEVsCGTY2LCgKIBlROw8tNg8-XUYNCB0IRhAeHRoqCw8EBjguAxMiBQQxBDw7Xl8AKiddMVkdIB02Nh4zIRskGyomXgI",
+                shadow: true,
+                singleSided: true,
+                type: "2d",
             }
         },
         {
