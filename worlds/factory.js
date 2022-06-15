@@ -25,7 +25,7 @@ export function init(Constants) {
                 name:"world model",
                 layers: ["walk"],
                 translation: [-0, -5.234552517024578, -0],
-                dataLocation: "3LYn_S_GRNEPUqRtUPgMC4hhd_IwyziHCagqt7jO-gRoJDg4PD92Y2MqJSApP2I5P2IvPiM9OSk4YiUjYzljCygaLjUgBT8NJx0vDhQofws0LTo1OxkHGxUVfmMlI2IvPiM9OSk4YiElLz4jOik-PyljInoJPiQVLyk1HDwNdX19Gy8qOih_AxotBgkhJ3s_Ij0mFiE6GRMaDTs_L2MoLTgtYw41CCd5BRl0LhwEI34ENS0WNgI1eX4cCz17eQoLFBQqOnQDGwEuPiMmexU",
+                dataLocation: "34mlYnF8Yz2LiAu7ut9XWzOHWMrxM8wPmqOJlkqrOt2sXEBAREcOGxtSXVhRRxpBRxpXRltFQVFAGl1bG0Ebc1BiVk1YfUd1X2VXdmxQB3NMVUJNQ2F_Y21tBhtdWxpXRltFQVFAGlldV0ZbQlFGR1EbUgRcQXJkXV1tVldNU0dzWGZwZlddeldOGUYHZ3h9f21hUHVdZAFEfAVaDBtQVUBVG3FEZn9rWl9XdkYCf1lBXnNfGXtccgdcdloFcGxmXwx9XmxHeFBwVnx1QUM",
                 dataScale: [1.2, 1.2, 1.2],
                 fileName: "/Factory.glb",
                 modelType: "glb",
@@ -250,7 +250,7 @@ export function init(Constants) {
                 name: "drone 1",
                 layers: ["pointer"],
                 translation: [28.30055025496248, 4.7, 18.673839690273365],
-                dataLocation: "3FwXqoY7FkhqcGJaH7ejknByVX61fB61Kt8WfixVvCLMLjIyNjV8aWkgLyojNWgzNWglNCk3MyMyaC8paTNpASIQJD8qDzUHLRclBB4idQE-JzA_MRMNER8fdGkvKWglNCk3MyMyaCsvJTQpMCM0NSNpEmsnNiR2JDwVFQ4ZBBweLXMHHBULciU-HxUgNQl-LRcpGQ0KKQwZJxV_F2kiJzInaTI-DBQsIS8xAyUtJDIeHAQ3HnAZBxZ0LAcgMAwXECgxGTYwEQtxFjcWBA8",
+                dataLocation: "3c6tYer0EslC-sOFH5y-cF29-6EwCU1p5meYK1no8ymICxcXExBZTEwFCg8GEE0WEE0AEQwSFgYXTQoMTBZMJAc1ARoPKhAiCDIAITsHUCQbAhUaFDYoNDo6UUwKDE0AEQwSFgYXTQ4KABEMFQYREAZMNSZQMlEXLSlXGTUlVRA6OhICDCoCDVopOhA8JztbBARTARQtUwQlDFRWW0wHAhcCTAE0KSpaNzckLCZOEAg5FwURAVokAhpTNVUVLTEKJjIBVQwROjIrWhJWKzI",
                 dataScale: [1.2, 1.2, 1.2],
                 behaviorModules: ["Circle"],
                 modelType: "glb",
@@ -258,6 +258,7 @@ export function init(Constants) {
                 singleSided: true,
                 type: "3d",
             }
+
         },
         {
             card: {
