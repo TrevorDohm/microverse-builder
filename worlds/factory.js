@@ -14,7 +14,7 @@ export function init(Constants) {
 
     Constants.UserBehaviorDirectory = "behaviors/factory";
     Constants.UserBehaviorModules = [
-        "lights.js", "crane.js", "garage.js", "forklift.js", "circle.js", "cascade.js", "earth.js"
+        "lights.js", "crane.js", "garage.js", "forklift.js", "circle.js", "cascade.js", "earth.js", "conveyorbox.js"
     ];
 
     Constants.UseRapier = true;
@@ -141,10 +141,108 @@ export function init(Constants) {
                 layers: ["pointer"],
                 dataLocation: "3UkowQroW_SGvJ0N4hXnZO_pwIEEVlVQNTvj8CJ0CG78PSEhJSZvenozPDkwJnsgJns2JzokIDAhezw6eiB6EjEDNyw5HCYUPgQ2Fw0xZhItNCMsIgAeAgwMZ3o8Ons2JzokIDAhezg8Nic6IzAnJjB6YBAAGSIZES8PHCcNBAVhIhlkbScSITQYHhliDR8SNy0DFz8gFAo7PAcTPnoxNCE0enhkF3gzEjxsDQYaIhwTYDsfGjkHMz84OCMTCjcjPzIfF3gkNzYgEyUtGzI",
                 pathIndex: 1,
+            }
+        },
+        {
+            card: {
+                name: "converyor box 1",
+                dataTranslation: [0, 0.7508889919233228, 0],
+                translation: [22.96199715067616, 0, 30.90992622375488],
+                rotation: [0, Math.PI / 2, 0],
+                dataScale: [1.2, 1.2, 1.2],
+                behaviorModules: ["ConveyorBox"],
+                layers: ["pointer"],
+                dataLocation: "3gnL5YhR7iiXlN_3akKO1X_IZO-h3cMyjiA79HWPAlBQDxMTFxRdSEgBDgsCFEkSFEkEFQgWEgITSQ4ISBJIJD8vLQEjKAoSLgEOIj4ICCk-EDcxHigFDFcBVUgECApJAh8GChcLAkkTFQIRCBVJCh4KDgQVCBECFRQCSAURXysuMzACDVAsXjEJUh0CBTAdNgEjFD4SPwpRNxY0CyskLxMhUwBWKT5IAwYTBkhQHSkWBBUmETEBHgI4MzcRLjMDMR0kLjJTJDgJNTQXHz0CLSYpDgssBgoM",
                 modelType: "glb",
                 shadow: true,
                 singleSided: true,
                 type: "3d",
+                startCount: 0,
+            }
+        },
+        {
+            card: {
+                name: "converyor box 2",
+                dataTranslation: [0, 0.7508889919233228, 0],
+                translation: [22.96199715067616, 0, 30.90992622375488],
+                rotation: [0, Math.PI / 2, 0],
+                dataScale: [1.2, 1.2, 1.2],
+                behaviorModules: ["ConveyorBox"],
+                layers: ["pointer"],
+                dataLocation: "3gnL5YhR7iiXlN_3akKO1X_IZO-h3cMyjiA79HWPAlBQDxMTFxRdSEgBDgsCFEkSFEkEFQgWEgITSQ4ISBJIJD8vLQEjKAoSLgEOIj4ICCk-EDcxHigFDFcBVUgECApJAh8GChcLAkkTFQIRCBVJCh4KDgQVCBECFRQCSAURXysuMzACDVAsXjEJUh0CBTAdNgEjFD4SPwpRNxY0CyskLxMhUwBWKT5IAwYTBkhQHSkWBBUmETEBHgI4MzcRLjMDMR0kLjJTJDgJNTQXHz0CLSYpDgssBgoM",
+                modelType: "glb",
+                shadow: true,
+                singleSided: true,
+                type: "3d",
+                startCount: -150,
+            }
+        },
+        {
+            card: {
+                name: "converyor box 3",
+                dataTranslation: [0, 0.7508889919233228, 0],
+                translation: [22.96199715067616, 0, 30.90992622375488],
+                rotation: [0, Math.PI / 2, 0],
+                dataScale: [1.2, 1.2, 1.2],
+                behaviorModules: ["ConveyorBox"],
+                layers: ["pointer"],
+                dataLocation: "3gnL5YhR7iiXlN_3akKO1X_IZO-h3cMyjiA79HWPAlBQDxMTFxRdSEgBDgsCFEkSFEkEFQgWEgITSQ4ISBJIJD8vLQEjKAoSLgEOIj4ICCk-EDcxHigFDFcBVUgECApJAh8GChcLAkkTFQIRCBVJCh4KDgQVCBECFRQCSAURXysuMzACDVAsXjEJUh0CBTAdNgEjFD4SPwpRNxY0CyskLxMhUwBWKT5IAwYTBkhQHSkWBBUmETEBHgI4MzcRLjMDMR0kLjJTJDgJNTQXHz0CLSYpDgssBgoM",
+                modelType: "glb",
+                shadow: true,
+                singleSided: true,
+                type: "3d",
+                startCount: -300,
+            }
+        },
+        {
+            card: {
+                name: "converyor box 4",
+                dataTranslation: [0, 0.7508889919233228, 0],
+                translation: [22.96199715067616, 0, 30.90992622375488],
+                rotation: [0, Math.PI / 2, 0],
+                dataScale: [1.2, 1.2, 1.2],
+                behaviorModules: ["ConveyorBox"],
+                layers: ["pointer"],
+                dataLocation: "3gnL5YhR7iiXlN_3akKO1X_IZO-h3cMyjiA79HWPAlBQDxMTFxRdSEgBDgsCFEkSFEkEFQgWEgITSQ4ISBJIJD8vLQEjKAoSLgEOIj4ICCk-EDcxHigFDFcBVUgECApJAh8GChcLAkkTFQIRCBVJCh4KDgQVCBECFRQCSAURXysuMzACDVAsXjEJUh0CBTAdNgEjFD4SPwpRNxY0CyskLxMhUwBWKT5IAwYTBkhQHSkWBBUmETEBHgI4MzcRLjMDMR0kLjJTJDgJNTQXHz0CLSYpDgssBgoM",
+                modelType: "glb",
+                shadow: true,
+                singleSided: true,
+                type: "3d",
+                startCount: -450,
+            }
+        },
+        {
+            card: {
+                name: "converyor box 5",
+                dataTranslation: [0, 0.7508889919233228, 0],
+                translation: [22.96199715067616, 0, 30.90992622375488],
+                rotation: [0, Math.PI / 2, 0],
+                dataScale: [1.2, 1.2, 1.2],
+                behaviorModules: ["ConveyorBox"],
+                layers: ["pointer"],
+                dataLocation: "3gnL5YhR7iiXlN_3akKO1X_IZO-h3cMyjiA79HWPAlBQDxMTFxRdSEgBDgsCFEkSFEkEFQgWEgITSQ4ISBJIJD8vLQEjKAoSLgEOIj4ICCk-EDcxHigFDFcBVUgECApJAh8GChcLAkkTFQIRCBVJCh4KDgQVCBECFRQCSAURXysuMzACDVAsXjEJUh0CBTAdNgEjFD4SPwpRNxY0CyskLxMhUwBWKT5IAwYTBkhQHSkWBBUmETEBHgI4MzcRLjMDMR0kLjJTJDgJNTQXHz0CLSYpDgssBgoM",
+                modelType: "glb",
+                shadow: true,
+                singleSided: true,
+                type: "3d",
+                startCount: -600,
+            }
+        },
+        {
+            card: {
+                name: "converyor box 6",
+                dataTranslation: [0, 0.7508889919233228, 0],
+                translation: [22.96199715067616, 0, 30.90992622375488],
+                rotation: [0, Math.PI / 2, 0],
+                dataScale: [1.2, 1.2, 1.2],
+                behaviorModules: ["ConveyorBox"],
+                layers: ["pointer"],
+                dataLocation: "3gnL5YhR7iiXlN_3akKO1X_IZO-h3cMyjiA79HWPAlBQDxMTFxRdSEgBDgsCFEkSFEkEFQgWEgITSQ4ISBJIJD8vLQEjKAoSLgEOIj4ICCk-EDcxHigFDFcBVUgECApJAh8GChcLAkkTFQIRCBVJCh4KDgQVCBECFRQCSAURXysuMzACDVAsXjEJUh0CBTAdNgEjFD4SPwpRNxY0CyskLxMhUwBWKT5IAwYTBkhQHSkWBBUmETEBHgI4MzcRLjMDMR0kLjJTJDgJNTQXHz0CLSYpDgssBgoM",
+                modelType: "glb",
+                shadow: true,
+                singleSided: true,
+                type: "3d",
+                startCount: -750,
             }
         },
         {
