@@ -68,7 +68,7 @@ export function init(Constants) {
                 name: "crane button 1",
                 type: "object",
                 translation: [3.816793504629362, 4.136223779145266, 30.394897079467775], // [7.770442246960653, 1.7540892281749288, 13.950883253194933],
-                craneSpeed: -0.01,
+                craneSpeed: -0.0125,
                 behaviorModules: ["CraneButton"],
                 myScope: "A",
             }
@@ -141,6 +141,10 @@ export function init(Constants) {
                 layers: ["pointer"],
                 dataLocation: "3UkowQroW_SGvJ0N4hXnZO_pwIEEVlVQNTvj8CJ0CG78PSEhJSZvenozPDkwJnsgJns2JzokIDAhezw6eiB6EjEDNyw5HCYUPgQ2Fw0xZhItNCMsIgAeAgwMZ3o8Ons2JzokIDAhezg8Nic6IzAnJjB6YBAAGSIZES8PHCcNBAVhIhlkbScSITQYHhliDR8SNy0DFz8gFAo7PAcTPnoxNCE0enhkF3gzEjxsDQYaIhwTYDsfGjkHMz84OCMTCjcjPzIfF3gkNzYgEyUtGzI",
                 pathIndex: 1,
+                modelType: "glb",
+                shadow: true,
+                singleSided: true,
+                type: "3d",
             }
         },
         {
@@ -249,7 +253,7 @@ export function init(Constants) {
             card: {
                 name: "drone 1",
                 layers: ["pointer"],
-                translation: [28.30055025496248, 4.7, 18.673839690273365],
+                translation: [28.30055025496248, 3.7, 18.673839690273365],
                 dataLocation: "3c6tYer0EslC-sOFH5y-cF29-6EwCU1p5meYK1no8ymICxcXExBZTEwFCg8GEE0WEE0AEQwSFgYXTQoMTBZMJAc1ARoPKhAiCDIAITsHUCQbAhUaFDYoNDo6UUwKDE0AEQwSFgYXTQ4KABEMFQYREAZMNSZQMlEXLSlXGTUlVRA6OhICDCoCDVopOhA8JztbBARTARQtUwQlDFRWW0wHAhcCTAE0KSpaNzckLCZOEAg5FwURAVokAhpTNVUVLTEKJjIBVQwROjIrWhJWKzI",
                 dataScale: [1.2, 1.2, 1.2],
                 behaviorModules: ["Circle"],
