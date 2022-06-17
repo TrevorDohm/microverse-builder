@@ -14,7 +14,7 @@ export function init(Constants) {
 
     Constants.UserBehaviorDirectory = "behaviors/factory";
     Constants.UserBehaviorModules = [
-        "lights.js", "crane.js", "garage.js", "forklift.js", "circle.js", "cascade.js", "earth.js", "conveyorbox.js"
+        "lights.js", "crane.js", "garage.js", "forklift.js", "circle.js", "cascade.js", "earth.js", "conveyorbox.js", "spin.js", "flightTracker.js", "openPortal.js"
     ];
 
     Constants.UseRapier = true;
@@ -343,6 +343,29 @@ export function init(Constants) {
                 shadow: true,
                 singleSided: true,
                 type: "2d",
+            }
+        },
+        {
+            card: {
+                name:"flightTracker",
+                translation: [-2.9612415315138225, 5.5325562744871135, -33.24926529495514],
+                type: "object",
+                scale: [0.3, 0.3, 0.3],
+                behaviorModules: ["Elected", "FlightTracker", "Spin"],
+                layers: ["pointer"],
+                color: 0xaaaaaa,
+            }
+        },
+        {
+            card: {
+                name: "portal button",
+                translation: [-1.448974900566561, 5.115427182902498, 42.569982106487444],
+                rotation: [0, 0, 0],
+                dataLocation: "3xPWaDNEJokKGvHfdMSKcBW5v43G3vImvojJebDXkFpgEAwMCAtCV1ceERQdC1YNC1YbChcJDR0MVhEXVw1XPxwuGgEUMQs5EykbOiAcSz8AGQ4BDy0zLyEhSlcRF1YbChcJDR0MVhURGwoXDh0KCx1XHxs3SxMtTyIdVQgsHQ8ZHh0xHD4eNAISMTBKIBoANT4hLStNCkkIPj4PLVccGQwZVzwiDR00C08VDB8sLhMRNCdADEBLH0gzDh07Gi4qF0k-Pw0zFhFIKi8vTyk",
+                modelType: "glb",
+                dataScale: [1.2, 1.2, 1.2],
+                behaviorModules: ["OpenArtGalleryPortalButton"],
+                type: "3d",
             }
         },
         {
