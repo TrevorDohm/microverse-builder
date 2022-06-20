@@ -50,11 +50,10 @@ export function init(Constants) {
         },
         {
             card: {
-                name: "crane",
+                name: "craneaaa",
                 dataTranslation: [0, -1.6, 0],
                 translation: [-1.4447057496318962, -5.504611090090481, 30.282952880859376],
                 dataScale: [1.2, 1.2, 1.2],
-                behaviorModules: ["Crane"],
                 layers: ["pointer"],
                 dataLocation: "3GW5JdktuEqs-2UBA9NJWViT2JB_Bc3k7JaMSlNHLAiQLzMzNzR9aGghLisiNGkyNGkkNSg2MiIzaS4oaDJoACMRJT4rDjQGLBYkBR8jdAA_JjE-MBIMEB4edWguKGkkNSg2MiIzaSouJDUoMSI1NCJoJHYtNRErIBQALQMUMC0SKh0sIw8ABSQDPh4jPXVzDiQeLyUUag4BFgoFCmgjJjMmaD8tECgYNCx0Eh50AnUrdD8ONzc-IjYldiAwdwMAIjcYKxcALDABMH8YAQY",
                 modelType: "glb",
@@ -65,10 +64,20 @@ export function init(Constants) {
         },
         {
             card: {
+                name: "crane",
+                type: "object",
+                translation: [-1.4447057496318962, -5.504611090090481, 30.282952880859376],
+                behaviorModules: ["Rapier", "Crane"],
+                layers: ["pointer"],
+                scale: [0.4, 0.4, 0.4],
+            }
+        },
+        {
+            card: {
                 name: "crane button 1",
                 type: "object",
                 translation: [3.816793504629362, 4.136223779145266, 30.394897079467775], // [7.770442246960653, 1.7540892281749288, 13.950883253194933],
-                craneSpeed: -0.0125,
+                craneSpeed: -0.01,
                 behaviorModules: ["CraneButton"],
                 myScope: "A",
             }
