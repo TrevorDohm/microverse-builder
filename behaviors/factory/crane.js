@@ -1,5 +1,21 @@
+/*
+
+    Important Note: When changing the height or width of the links and joints,
+    you must account for many things. This includes the collider, the translations
+    of the links, the impulse joint creation, and the actual size of the material. 
+    Some of these need to be doubled and others need to be halved or even fourthed,
+    so look into the documentation to help figure it out. I've provided some comments
+    below to help assist you in changing these values.
+    
+    (cd = Worldcore.RAPIER.ColliderDesc.ball(0.85))
+    (let translation = [0, 34.135389925172704 - i * 2, 0])
+    (card.call("Rapier$RapierActor", "createImpulseJoint", "ball" ...))
+    (let s = [0.1, 2.3])
+
+*/
+
 class CraneActor {
-    setup() { // Start With Logic
+    setup() { // Start With Logic, Continue With Physics Implementation
         this.pointA = [-1.4447057496318962, -5.504611090090481, 29.225081241195];
         this.pointB = [-1.4447057496318962, -5.504611090090481, -6.8406291023593755];
         this.subscribe("crane", "updatePositionBy", "updatePositionBy");
@@ -19,21 +35,21 @@ class CraneActor {
             type: "3d",
         });
 
-        let d = 5; // Amount of Links (+1)
-        this.removeObjects();
+        let d = 5; // Amount of Links (+1) -> Four Links, One End Piece (Hook)
+        this.removeObjects(); // Reset
 
         this.links = [...Array(d).keys()].map((i) => {
 
             let bodyDesc;
-            if (i === 0) { bodyDesc = Worldcore.RAPIER.RigidBodyDesc.newKinematicPositionBased(); } // Top Link
+            if (i === 0) { bodyDesc = Worldcore.RAPIER.RigidBodyDesc.newKinematicPositionBased(); } // Top Link, Stays in Place
             else { bodyDesc = Worldcore.RAPIER.RigidBodyDesc.newDynamic(); }
 
             let card;
-            let translation = [0, 34.135389925172704 - i * 2, 0]; // 13.5
+            let translation = [0, 34.135389925172704 - i * 2, 0]; // Take into account the * 2, Change for differing values
             let name = `link${i}`;
             let cd;
 
-            if (i === d - 1) {
+            if (i === d - 1) { // For the Final Link, do Something Different (Not Necessary)
                 card = this.createCard({
                     name: "craneHook",
                     translation,
@@ -49,12 +65,12 @@ class CraneActor {
                     noSave: true,
                 });
                 card.call("Rapier$RapierActor", "createRigidBody", bodyDesc);
-                cd = Worldcore.RAPIER.ColliderDesc.ball(0.85);
+                cd = Worldcore.RAPIER.ColliderDesc.ball(0.85); // Radius
             } 
 
-            else {
+            else { // Standard Link
                 card = this.createCard({
-                    name, // Link0, Link1 ... Link8
+                    name, // Link0, Link1 ...
                     translation,
                     type: "object",
                     parent: this,
@@ -63,7 +79,7 @@ class CraneActor {
                     noSave: true,
                 });
                 card.call("Rapier$RapierActor", "createRigidBody", bodyDesc);
-                cd = Worldcore.RAPIER.ColliderDesc.cylinder(0.9, 0.4);
+                cd = Worldcore.RAPIER.ColliderDesc.cylinder(0.9, 0.4); // Double Height (Gets Halved), Radius
             }
 
             cd.setRestitution(0.5);
@@ -87,7 +103,7 @@ class CraneActor {
                 noSave: true,
             });
 
-            card.call("Rapier$RapierActor", "createImpulseJoint", "ball", this.links[i], this.links[i + 1], {x: 0, y: -1, z: 0}, {x: 0, y: 1, z: 0});
+            card.call("Rapier$RapierActor", "createImpulseJoint", "ball", this.links[i], this.links[i + 1], {x: 0, y: -1, z: 0}, {x: 0, y: 1, z: 0}); // Half the y
             return card;
 
         });
@@ -132,14 +148,6 @@ class CranePawn {
             this.obj = null;
         }
 
-        let geometry = new Worldcore.THREE.BoxGeometry(0.5, 0.5, 0.5);
-        let material = new Worldcore.THREE.MeshStandardMaterial({color: this.actor._cardData.color || 0xffffff});
-        this.obj = new Worldcore.THREE.Mesh(geometry, material);
-        this.obj.castShadow = this.actor._cardData.shadow;
-        this.obj.receiveShadow = this.actor._cardData.shadow;
-
-        this.shape.add(this.obj);
-
         this.removeEventListener("pointerDoubleDown", "onPointerDoubleDown");
         this.addEventListener("pointerDoubleDown", "nop");
     }
@@ -183,9 +191,9 @@ class CraneLinkPawn {
         this.shape.children.forEach((c) => this.shape.remove(c));
         this.shape.children = [];
 
-        let s = [0.1, 2.3];
+        let s = [0.1, 2.3]; // Radius, Height (Half Height Here)
         let geometry = new Worldcore.THREE.CylinderGeometry(s[0], s[0], s[1], 20);
-        let material = new Worldcore.THREE.MeshStandardMaterial({color: this.actor._cardData.color || 0xffffff, metalness: 0.4});
+        let material = new Worldcore.THREE.MeshStandardMaterial({color: this.actor._cardData.color || 0xffffff, metalness: 0.6});
         this.obj = new Worldcore.THREE.Mesh(geometry, material);
         this.obj.castShadow = this.actor._cardData.shadow;
         this.obj.receiveShadow = this.actor._cardData.shadow;
@@ -194,7 +202,7 @@ class CraneLinkPawn {
     }
 }
 
-class CraneButtonActor {
+class CraneButtonActor { // Buttons Move Crane
     setup() {
         this.occupier = undefined;
         this.listen("publishMove", "publishMove");
