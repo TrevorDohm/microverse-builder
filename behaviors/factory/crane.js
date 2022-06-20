@@ -25,11 +25,11 @@ class CraneActor {
         this.links = [...Array(d).keys()].map((i) => {
 
             let bodyDesc;
-            if (i === 0) { bodyDesc = Worldcore.RAPIER.RigidBodyDesc.newKinematicPositionBased(); }
+            if (i === 0) { bodyDesc = Worldcore.RAPIER.RigidBodyDesc.newKinematicPositionBased(); } // Top Link
             else { bodyDesc = Worldcore.RAPIER.RigidBodyDesc.newDynamic(); }
 
             let card;
-            let translation = [0, 33.860389925172704 - i * 2, 0]; // 13.5
+            let translation = [0, 34.135389925172704 - i * 2, 0]; // 13.5
             let name = `link${i}`;
             let cd;
 
@@ -44,8 +44,8 @@ class CraneActor {
                     modelType: "glb",
                     dataLocation: "3DXL69tRPG3TIGu1pGwQ8THC_ykY41jJOqMYGH8DInacLDAwNDd-a2siLSghN2oxN2onNis1MSEwai0razFrBxwMDiIACykxDSItAR0rKwodMxQSPQsmL3QidmsnKylqITwlKTQoIWowNiEyKzZqKT0pLSc2KzIhNjchayJ3HnYwcQcnCgp0cCAcJQtpFC0lAHEVHAI-MBEdLSUWciYrDRN2aRMhFR1rICUwJWssaSMcDXI1DgcdITMuHH0cLi0WdxRzKwk8KXB1MgkdKyEgLBR3cjUsdDcd",
                     behaviorModules: ["Rapier", "CraneLink"],
-                    craneHandlesEvent: true,
-                    craneProto: true,
+                    craneHandlesEvent: true, // To Add Movement Physics
+                    craneProto: true, // Since GLB Exists
                     noSave: true,
                 });
                 card.call("Rapier$RapierActor", "createRigidBody", bodyDesc);
@@ -115,10 +115,11 @@ class CraneActor {
         }
     }
 
-    updatePositionBy(ratio) {
+    updatePositionBy(ratio) { // Where The Movement Occurs
         this.ratio += ratio;
         this.ratio = Math.min(1, Math.max(0, this.ratio));
         this.set({translation: Worldcore.v3_lerp(this.pointA, this.pointB, this.ratio)});
+        this.publish("craneLink", "handlePhysics", ratio); // Physics
     }
 }
 
@@ -145,7 +146,19 @@ class CranePawn {
 }
 
 class CraneLinkActor {
-    setup() { }
+    setup() { 
+        if (this._cardData.craneHandlesEvent) {
+            this.subscribe("craneLink", "handlePhysics", "handlePhysics");
+        }
+    }
+
+    handlePhysics(ratio) { // Complete Checks, Apply Physics
+        if (ratio === 0) { return; }
+        let r = this.rigidBody;
+        if (!r) { return; }
+        let movement = Worldcore.v3_scale([0, 0, ratio * 20], 30);
+        r.applyForce({x: movement[0], y: movement[1], z: movement[2]}, true);
+    }
 }
 
 class CraneLinkPawn {
@@ -166,7 +179,7 @@ class CraneLinkPawn {
         this.removeEventListener("pointerDoubleDown", "onPointerDoubleDown");
         this.addEventListener("pointerDoubleDown", "nop");
 
-        if (this.actor._cardData.craneProto) {return;}
+        if (this.actor._cardData.craneProto) { return; }
         this.shape.children.forEach((c) => this.shape.remove(c));
         this.shape.children = [];
 

@@ -77,7 +77,7 @@ export function init(Constants) {
                 name: "crane button 1",
                 type: "object",
                 translation: [3.816793504629362, 4.136223779145266, 30.394897079467775], // [7.770442246960653, 1.7540892281749288, 13.950883253194933],
-                craneSpeed: -0.01,
+                craneSpeed: -0.005,
                 behaviorModules: ["CraneButton"],
                 myScope: "A",
             }
@@ -87,7 +87,7 @@ export function init(Constants) {
                 name: "crane button 2",
                 type: "object",
                 translation: [3.816793504629362, 4.636223779145266, 30.394897079467775],
-                craneSpeed: 0.01,
+                craneSpeed: 0.005,
                 behaviorModules: ["CraneButton"],
                 myScope: "A",
             }
