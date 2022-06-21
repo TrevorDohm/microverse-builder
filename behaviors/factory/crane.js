@@ -5,7 +5,8 @@
     of the links, the impulse joint creation, and the actual size of the material. 
     Some of these need to be doubled and others need to be halved or even fourthed,
     so look into the documentation to help figure it out. I've provided some comments
-    below to help assist you in changing these values.
+    below to help assist you in changing these values. Also, the code is somewhat
+    modified for two connections, so see previous commits for the one connection code.
     
     (cd = Worldcore.RAPIER.ColliderDesc.ball(0.85))
     (let translation = [0, 34.135389925172704 - i * 2, 0])
@@ -24,7 +25,7 @@ class CraneActor {
         
         this.createCard({ // Create Base
             name: "craneBase",
-            translation: [0, -4.6239610018586506, 0],
+            translation: [0, -4.6239610018586506, 0.25],
             scale: [0.9, 0.9, 0.9],
             parent: this,
             modelType: "glb",
@@ -35,24 +36,25 @@ class CraneActor {
             type: "3d",
         });
 
-        let d = 5; // Amount of Links (+1) -> Four Links, One End Piece (Hook)
+        let d = 9; // Amount of Links (+1) -> Four Links, Four Links, One End Piece (Hook)
         this.removeObjects(); // Reset
 
         this.links = [...Array(d).keys()].map((i) => {
 
             let bodyDesc;
-            if (i === 0) { bodyDesc = Worldcore.RAPIER.RigidBodyDesc.newKinematicPositionBased(); } // Top Link, Stays in Place
+            if (i === 0 || i === 4) { bodyDesc = Worldcore.RAPIER.RigidBodyDesc.newKinematicPositionBased(); } // Top Link, Stays in Place
             else { bodyDesc = Worldcore.RAPIER.RigidBodyDesc.newDynamic(); }
 
             let card;
-            let translation = [0, 34.135389925172704 - i * 2, 0]; // Take into account the * 2, Change for differing values
+            let translation1 = [0, 34.035389925172704 - i * 2, 0.8]; // Take into Account the * 2, Change for Differing Values
+            let translation2 = [0, 42.035389925172704 - i * 2, 0]; // Second Connection
             let name = `link${i}`;
             let cd;
 
             if (i === d - 1) { // For the Final Link, do Something Different (Not Necessary)
                 card = this.createCard({
                     name: "craneHook",
-                    translation,
+                    translation: [0, 26.035389925172704, 0], // Take Second Connection into Account
                     dataTranslation: [0, -45, 0],
                     scale: [0.8, 0.8, 0.8],
                     parent: this,
@@ -68,10 +70,24 @@ class CraneActor {
                 cd = Worldcore.RAPIER.ColliderDesc.ball(0.85); // Radius
             } 
 
+            else if (i >= 4) { // Second Link
+                card = this.createCard({
+                    name, // Link4, Link5 ...
+                    translation: translation2,
+                    type: "object",
+                    parent: this,
+                    behaviorModules: ["Rapier", "CraneLink"],
+                    craneHandlesEvent: true,
+                    noSave: true,
+                });
+                card.call("Rapier$RapierActor", "createRigidBody", bodyDesc);
+                cd = Worldcore.RAPIER.ColliderDesc.cylinder(0.9, 0.4); // Double Height (Gets Halved), Radius
+            }
+
             else { // Standard Link
                 card = this.createCard({
                     name, // Link0, Link1 ...
-                    translation,
+                    translation: translation1,
                     type: "object",
                     parent: this,
                     behaviorModules: ["Rapier", "CraneLink"],
@@ -85,7 +101,7 @@ class CraneActor {
             cd.setRestitution(0.5);
             cd.setFriction(1);
 
-            if (i === d - 1) { cd.setDensity(4.0); } 
+            if (i === d - 1) { cd.setDensity(6.0); } 
             else { cd.setDensity(1.5); }
 
             card.call("Rapier$RapierActor", "createCollider", cd);
@@ -103,7 +119,8 @@ class CraneActor {
                 noSave: true,
             });
 
-            card.call("Rapier$RapierActor", "createImpulseJoint", "ball", this.links[i], this.links[i + 1], {x: 0, y: -1, z: 0}, {x: 0, y: 1, z: 0}); // Half the y
+            if (i !== 3) { card.call("Rapier$RapierActor", "createImpulseJoint", "ball", this.links[i], this.links[i + 1], {x: 0, y: -1, z: 0}, {x: 0, y: 1, z: 0}); } // Half Y
+            else { card.call("Rapier$RapierActor", "createImpulseJoint", "ball", this.links[3], this.links[8], {x: 0, y: -1, z: -0.8}, {x: 0, y: 1, z: 0}); } // Specific Connection (First Joint, Second Joint)
             return card;
 
         });
@@ -164,7 +181,7 @@ class CraneLinkActor {
         if (ratio === 0) { return; }
         let r = this.rigidBody;
         if (!r) { return; }
-        let movement = Worldcore.v3_scale([0, 0, ratio * 20], 30);
+        let movement = Worldcore.v3_scale([0, 0, ratio * 60], 30);
         r.applyForce({x: movement[0], y: movement[1], z: movement[2]}, true);
     }
 }
